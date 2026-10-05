@@ -1,6 +1,8 @@
 #ifndef LIST_H
 #define LIST_H
 
+#include <cstddef>
+
 // List
 
 // Stores integer values inside
@@ -11,7 +13,7 @@ struct List;
 struct ListItem;
 
 // Creates new list
-List *list_create();
+List *list_create(size_t size = 0);
 
 // Destroys the list and frees the memory
 void list_delete(List *list);
