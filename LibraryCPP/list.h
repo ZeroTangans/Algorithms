@@ -2,18 +2,19 @@
 #define LIST_H
 
 #include <cstddef>
+#include <string>
 
 // List
 
 // Stores integer values inside
 // Change it to desired type
-typedef int Data;
+typedef std::string Data;
 
 struct List;
 struct ListItem;
 
 // Creates new list
-List *list_create(size_t size = 0);
+List *list_create();
 
 // Destroys the list and frees the memory
 void list_delete(List *list);

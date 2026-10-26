@@ -8,7 +8,6 @@ target_link_libraries(TwoMin PRIVATE Lab1CPP)
 add_executable(RLE RLE.cpp)
 target_link_libraries(RLE PRIVATE Lab1CPP)
 
-
 add_test(NAME TwoMin_Test1
     COMMAND TwoMin ${CMAKE_CURRENT_SOURCE_DIR}/Tests/Test1_1.txt)
 set_property(TEST TwoMin_Test1 PROPERTY PASS_REGULAR_EXPRESSION "1 3")
