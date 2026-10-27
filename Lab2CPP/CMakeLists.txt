@@ -5,7 +5,6 @@ target_link_libraries(Lab2CPP PUBLIC LibraryCPP)
 add_executable(RPN RPN.cpp)
 target_link_libraries(RPN PRIVATE Lab2CPP)
 
-
 add_test(NAME RPN_Test1
     COMMAND RPN ${CMAKE_CURRENT_SOURCE_DIR}/Tests/Test1_1.txt)
 set_property(TEST RPN_Test1 PROPERTY PASS_REGULAR_EXPRESSION "42")

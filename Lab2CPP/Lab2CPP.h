@@ -10,6 +10,8 @@
 
 using namespace std;
 
-vector<string>* tokens_create_and_read(ifstream& input);
+using Tokens = vector<string>;
+
+Tokens* tokens_create_and_read(ifstream& input);
 
 #endif

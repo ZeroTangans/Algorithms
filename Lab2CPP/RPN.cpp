@@ -1,5 +1,5 @@
 #include "Lab2CPP.h"
-#include "../LibraryCPP/stack.h"
+#include "stack.h"
 
 void SYA(vector<string>& tokens)
 {
