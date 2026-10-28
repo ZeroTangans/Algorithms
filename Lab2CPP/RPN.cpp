@@ -1,10 +1,10 @@
 #include "Lab2CPP.h"
 #include "stack.h"
 
-void SYA(vector<string>& tokens)
+bool SYA(Tokens& tokens)
 {
     Stack* stack = stack_create();
-    vector<string> aux;
+    Tokens aux;
     bool pri = false;
 
     for (size_t i = 0; i < tokens.size(); i++) {
@@ -42,21 +42,33 @@ void SYA(vector<string>& tokens)
                 aux.push_back(stack_get(stack));
                 stack_pop(stack);
             }
+            if (stack_empty(stack)) {
+                stack_delete(stack);
+                return false;
+            }
             stack_pop(stack);
         }
     }
     while (!stack_empty(stack)) {
+        if (stack_get(stack) == "(") {
+            stack_delete(stack);
+            return false;
+        }
         aux.push_back(stack_get(stack));
         stack_pop(stack);
     }
     tokens = std::move(aux);
     stack_delete(stack);
+    return true;
 }
 
-void RPN(vector<string>& tokens)
+void RPN(Tokens& tokens)
 {
+    if (!SYA(tokens)) {
+        cerr << "Invalid expression\n";
+        return;
+    }
     Stack* stack = stack_create();
-    SYA(tokens);
     for (size_t i = 0; i < tokens.size(); i++) {
         const string& t = tokens[i];
         if (isdigit(static_cast<unsigned char>(t[0]))) {
@@ -113,7 +125,7 @@ int main(int argc, char** argv)
         return 0;
     }
 
-    vector<string>* tokens = tokens_create_and_read(input);
+    Tokens* tokens = tokens_create_and_read(input);
     if (tokens == nullptr) {
         cerr << "Invalid expression\n";
         return 0;

@@ -11,7 +11,6 @@ Tokens* tokens_create_and_read(ifstream& input)
 
     size_t i = 0;
     bool token = false;
-    int bracketCount = 0;
     while (i < expression.size()) {
         char c = expression[i];
 
@@ -37,19 +36,16 @@ Tokens* tokens_create_and_read(ifstream& input)
             }
             else if (c == '(') {
                 if (token) return nullptr;
-                bracketCount++;
             }
             else if (c == ')') {
                 if (!token) return nullptr;
-                bracketCount--;
-                if (bracketCount < 0) return nullptr;
             }
             else return nullptr;
             tokens.push_back(string(1, c));
             i++;
         }
     }
-    if (!token || bracketCount != 0) return nullptr;
+    if (!token) return nullptr;
     return new Tokens(move(tokens));
 }
 
